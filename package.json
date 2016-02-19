@@ -1,11 +1,12 @@
 {
-	"nativescript": {
-		"id": "org.nativescript.TestApp",
-		"tns-android": {
-			"version": "1.6.1"
-		}
-	},
-	"dependencies": {
-		"tns-core-modules": "1.5.2"
-	}
+  "nativescript": {
+    "id": "org.nativescript.TestApp",
+    "tns-android": {
+      "version": "1.6.1"
+    }
+  },
+  "dependencies": {
+    "tns-core-modules": "1.5.2",
+    "tns-core-modules-widgets": "^1.6.1"
+  }
 }
