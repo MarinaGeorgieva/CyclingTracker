@@ -1,0 +1,7 @@
+<Page xmlns:maps="nativescript-googlemaps" navigatedTo="onNavigatedTo">
+    <GridLayout rows="auto, *">
+    	<Label row="0" text="{{ location, 'latitude: ' + location.latitude + ', longitude: ' + location.longitude }}"/>
+        <!--<maps:TnsGoogleMaps row="1" marker="{{ location }}" id="map"/> -->
+        <Label row="2" text="{{ 'speed: ' + location.speed + 'm/s' }}" />
+    </GridLayout>
+</Page>

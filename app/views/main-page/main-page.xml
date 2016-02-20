@@ -1,7 +1,0 @@
-<Page xmlns="http://schemas.nativescript.org/tns.xsd" loaded="pageLoaded">
-  <StackLayout>
-    <Button text="Track" tap="{{ tapTrack }}" />
-    <Button text="Profile" tap="{{tapProfile}}" />
-    <Button text="Shared tracks" tap="{{ tapTrack }}" />
-  </StackLayout>
-</Page>

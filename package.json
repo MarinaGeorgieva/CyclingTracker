@@ -6,6 +6,7 @@
 		}
 	},
 	"dependencies": {
+		"nativescript-geolocation": "0.0.8",
 		"nativescript-toast": "^1.2.0",
 		"tns-core-modules": "1.5.2",
 		"tns-core-modules-widgets": "^1.6.1"
