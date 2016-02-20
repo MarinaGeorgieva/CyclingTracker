@@ -5,6 +5,9 @@ function pageLoaded(args) {
 	page.bindingContext = {
 		tapTrack: function() {
 			frameModule.topmost().navigate("views/track-tour-page/track-tour-page");
+		},
+		tapProfile: function() {
+			frameModule.topmost().navigate("views/my-profile-page/my-profile-page");
 		}
 	};
 }

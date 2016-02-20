@@ -1,0 +1,8 @@
+<Page xmlns="http://schemas.nativescript.org/tns.xsd" loaded="pageLoaded">
+  <ScrollView>
+    <StackLayout>
+    <Label text="Profile page"/>        
+        <Image id="myImg"/>
+      </StackLayout>
+    </ScrollView>
+</Page>
