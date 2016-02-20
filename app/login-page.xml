@@ -1,0 +1,20 @@
+<Page xmlns="http://schemas.nativescript.org/tns.xsd" loaded="pageLoaded">
+  <ScrollView>
+    <StackLayout>
+        <Label text="Register"/>
+        <Image id="myImg"/>
+        <TextView hint="Username" id="usernameTextView"></TextView>
+        <TextView hint="Email" id="emailTextView"></TextView>
+        <TextView secure="true" hint="Password" id="passwordTextView"/>
+        <TextView secure="true" hint="Confirm password" id="confirmTextView"/>
+        <TextView hint="Full Name" id="fullNameTextView"></TextView>
+
+        <Button text="Take photo" tap="{{takeAvatarTapped}}"/>
+        <Button text="Submit" tap="{{tapRegister}}"/>
+        <Label text="...or just Login"/>
+        <TextView hint="Username"  id="loginUsernameTextView"></TextView>
+        <TextView hint="Password"  id="loginPassTextView"/>
+        <Button text="Login" tap="{{tapLogin}}"/>
+      </StackLayout>
+    </ScrollView>
+</Page>
