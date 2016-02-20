@@ -1,5 +1,5 @@
 var frameModule = require("ui/frame");
-var Everlive = require('./libs/everlive/everlive.all.min');
+var Everlive = require('./../../libs/everlive/everlive.all.min');
 var el = new Everlive('nh2gqgfwwjk2l3nj');
 var appSettings = require('application-settings');
 var textView = require("ui/text-view");
@@ -14,7 +14,7 @@ function pageLoaded(args) {
 	//check if first time
 
 	if (appSettings.getBoolean(global.profileCreated, false)) {
-		frameModule.topmost().navigate("main-page");
+		frameModule.topmost().navigate("views/main-page/main-page");
 	};
 
 	var page = args.object;
@@ -53,7 +53,7 @@ function pageLoaded(args) {
 				 } else{
 				 	appSettings.setString(global.userId, currentUser.Id);
 					appSettings.setBoolean(global.profileCreated, true);
-					frameModule.topmost().navigate("main-page");
+					frameModule.topmost().navigate("views/main-page/main-page");
 				 };
 	
 			}, function(error) {
@@ -101,7 +101,7 @@ function pageLoaded(args) {
 			data.create(user, function(data) {
 				appSettings.setString(global.userId, data.result.Id);
 				appSettings.setBoolean(global.profileCreated, true);
-				frameModule.topmost().navigate("main-page");
+				frameModule.topmost().navigate("views/main-page/main-page");
 			}, function(error) {
 				console.log('ERROR ' + JSON.stringify(error)); // error
 
