@@ -1,20 +1,4 @@
-﻿.title {
-    font-size: 30;
-    horizontal-align: center;
-    margin: 20;
-}
-
-button {
-    horizontal-align: center;
-}
-
-.message {
-    font-size: 20;
-    color: #284848;
-    horizontal-align: center;
-}
-
-.action-label {
+﻿.action-label {
 	margin-left: 5;
 	font-family: Harlow Solid Italic Italic;
 	color: #FA5F01;

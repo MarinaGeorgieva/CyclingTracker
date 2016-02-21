@@ -1,0 +1,30 @@
+.logo {
+	width: 100;
+	height: 100;
+    margin-top: 20;
+    margin-left: 0;
+    margin-right: 0;
+    margin-bottom: 20;
+}
+
+TextField {
+    margin: 10;
+    padding: 10;
+    color: #FF7D2E;
+}
+
+.loginButton {
+	background-color: #FF7D2E;
+	color: #636363;
+    margin: 10;
+    padding: 10;
+}
+
+.registerButton {
+	border-width: 0;
+	border-color: transparent;
+	background-color: transparent;
+	color: #FF7D2E;
+	margin: 50;
+    padding: 10;
+}

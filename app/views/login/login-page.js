@@ -1,16 +1,35 @@
 var frameModule = require("ui/frame");
 var Everlive = require('./../../libs/everlive/everlive.all.min');
 var el = new Everlive('nh2gqgfwwjk2l3nj');
+var UserViewModel = require("./../../view-models/user-view-model");
+var Toast = require("nativescript-toast");
+
+/*
 var appSettings = require('application-settings');
 var textView = require("ui/text-view");
 var observable = require("data/observable");
-var Toast = require("nativescript-toast");
+
 var camera = require("camera");
 var imageSource = require("image-source");
 var fileUri = '';
+*/
+
+var user = new UserViewModel({
+	username: "",
+	password: ""
+});
+
+var username,
+	password;
 
 function pageLoaded(args) {
+	var page = args.object;
+	page.bindingContext = user;
 
+	username = page.getViewById("usernameTextField").text;
+	password = page.getViewById("passwordTextField").text;
+
+	/*
 	//check if first time
 
 	if (appSettings.getBoolean(global.profileCreated, false)) {
@@ -21,15 +40,15 @@ function pageLoaded(args) {
 	var myImage = page.getViewById("myImg");
 	var user = {};
 
-
+	/*
 	page.bindingContext = {
 		tapLogin: function() {
 
 			console.log('loginTapped');
 			//frameModule.topmost().navigate("views/main-page/main-page");
 
-			var userName = page.getViewById('loginUsernameTextView').text;
-			var pass = page.getViewById('loginPassTextView').text;
+			var userName = page.getViewById('loginUsernameTextField').text;
+			var pass = page.getViewById('loginPassTextField').text;
 
 			if (!userName) {
 				Toast.makeText("Provide username to login!").show();
@@ -57,7 +76,7 @@ function pageLoaded(args) {
 						console.log('-------------------tuk befor------------------');
 						frameModule.topmost().navigate("views/home/home-page");
 						console.log('-------------------tuk after------------------');
-						};
+					};
 
 				}, function(error) {
 					console.log(JSON.stringify(error));
@@ -136,6 +155,69 @@ function pageLoaded(args) {
 			});
 		}
 	};
+	*/
 }
 
+function tapLogin() {
+	console.log("----------------Login----------------")
+
+	/*
+	if (!username) {
+		Toast.makeText("Provide username to login!").show();
+	};
+	if (!password) {
+		Toast.makeText("Provide password to login!").show();
+	};
+	*/
+	//TODO: Validate username and password !!!!!
+
+	user.login();
+	/*
+	console.log('loginTapped');
+	//frameModule.topmost().navigate("views/main-page/main-page");
+
+	var username = viewModule.getViewById(page, 'usernameTextView').text;
+	var pass = viewModule.getViewById(page, 'passwordTextView').text;
+
+	if (!userName) {
+		Toast.makeText("Provide username to login!").show();
+	};
+	if (!pass) {
+		Toast.makeText("Provide password to login!").show();
+	};
+
+	var data = el.data('userInfo');
+	var query = new Everlive.Query();
+	query.where()
+		.eq('userName', userName)
+		.done()
+		.select('userName', 'password', 'Id');
+
+	data.get(query)
+		.then(function(data) {
+			var currentUser = data.result[0];
+			if (pass != currentUser.password) {
+				Toast.makeText("Password incorrect!").show();
+				return;
+			} else {
+				appSettings.setString(global.userId, currentUser.Id);
+				appSettings.setBoolean(global.profileCreated, true);
+				console.log('-------------------tuk befor------------------');
+				frameModule.topmost().navigate("views/home/home-page");
+				console.log('-------------------tuk after------------------');
+			};
+
+		}, function(error) {
+			console.log(JSON.stringify(error));
+		});
+		*/
+}
+
+function goToRegister() {
+	var topmost = frameModule.topmost();
+	topmost.navigate("views/register/register-page");
+}
+
+exports.tapLogin = tapLogin;
+exports.goToRegister = goToRegister;
 exports.pageLoaded = pageLoaded;
