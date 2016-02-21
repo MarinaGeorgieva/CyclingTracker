@@ -300,8 +300,13 @@ function tapProfile() {
 	topmost.navigate("views/profile/profile-page");
 }
 
+function tapShared() {
+	topmost.navigate("views/shared/shared-tracks-page");
+}
+
 exports.tapTrack = tapTrack;
 exports.tapProfile = tapProfile;
+exports.tapShared = tapShared;
 
 exports.buttonStartTap = buttonStartTap;
 exports.buttonStopTap = buttonStopTap;

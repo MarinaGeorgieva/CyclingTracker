@@ -16,6 +16,11 @@ function tapProfile() {
 	topmost.navigate("views/profile/profile-page");
 }
 
+function tapShared() {
+	topmost.navigate("views/shared/shared-tracks-page");
+}
+
+exports.tapShared = tapShared;
 exports.tapTrack = tapTrack;
 exports.tapProfile = tapProfile;
 exports.pageLoaded = pageLoaded;

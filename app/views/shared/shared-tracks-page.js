@@ -1,15 +1,17 @@
 var frameModule = require("ui/frame");
+var observable = require("data/observable");
 var Everlive = require('./../../libs/everlive/everlive.all.min');
 var el = new Everlive('nh2gqgfwwjk2l3nj');
 var appSettings = require('application-settings');
 
 var topmost;
+
 var myTracks = [];
 
 function pageLoaded(args) {
 	var page = args.object;
 	topmost = frameModule.topmost();
-	myTracks = getMyTracks();
+	myTracks = getSharedTracks();
 }
 
 function tapTrack() {
@@ -24,19 +26,15 @@ function tapShared() {
 	topmost.navigate("views/shared/shared-tracks-page");
 }
 
-
-function getMyTracks(){
-
-	var userId = appSettings.getString(global.userId);
-
+function getSharedTracks(){
 	var data = el.data('track');
 	var query = new Everlive.Query();
 	
 	query.where()
-		.eq('userId', userId)
+		.eq('isPublic', true)
 		.done()
-		.select('userFullName', 'distance', 'trackPictureUrl', 'Created at')
-		.orderDesc('Created-at')
+		.select('userFullName', 'distance', 'trackPictureUrl')
+//		.orderDesc('Created-at')
 		.take(1);
 
 
@@ -50,7 +48,8 @@ function getMyTracks(){
 				});
 }
 
-exports.tapShared = tapShared;
+
 exports.tapTrack = tapTrack;
 exports.tapProfile = tapProfile;
+exports.tapShared = tapShared;
 exports.pageLoaded = pageLoaded;
