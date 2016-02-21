@@ -14,12 +14,9 @@
         <drawer:PushTransition />
     </drawer:rad-side-drawer.drawerTransition>
     <drawer:RadSideDrawer.mainContent>
-    	<ScrollView>
-    		<StackLayout>
-    			<Label text="Profile page"/>        
-        		<Image id="myImg"/>
-      		</StackLayout>
-    	</ScrollView>
+    	<StackLayout>
+    		<Label text="Shared tracks listing" />
+     	</StackLayout>
     </drawer:RadSideDrawer.mainContent>
     <drawer:RadSideDrawer.drawerContent>
       <StackLayout>

@@ -20,6 +20,11 @@ function tapProfile() {
 	topmost.navigate("views/profile/profile-page");
 }
 
+function tapShared() {
+	topmost.navigate("views/shared/shared-tracks-page");
+}
+
+
 function getMyTracks(){
 
 	var userId = appSettings.getString(global.userId);
@@ -33,7 +38,7 @@ function getMyTracks(){
 		.select('userFullName', 'distance', 'trackPictureUrl', 'Created at')
 		.orderDesc('Created-at')
 		.take(1);
-		
+
 
 		data.get(query)
 				.then(function(data) {
@@ -45,6 +50,7 @@ function getMyTracks(){
 				});
 }
 
+exports.tapShared = tapShared;
 exports.tapTrack = tapTrack;
 exports.tapProfile = tapProfile;
 exports.pageLoaded = pageLoaded;

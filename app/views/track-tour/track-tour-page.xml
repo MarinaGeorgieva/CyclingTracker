@@ -47,7 +47,7 @@
       		<StackLayout>
     			<Button text="Track" tap="tapTrack" />
     			<Button text="Profile" tap="tapProfile" />
-    			<Button text="Shared tracks" tap="tapTrack" />
+    			<Button text="Shared tracks" tap="tapShared" />
      		</StackLayout>
     	</drawer:RadSideDrawer.drawerContent>
   </drawer:RadSideDrawer>
