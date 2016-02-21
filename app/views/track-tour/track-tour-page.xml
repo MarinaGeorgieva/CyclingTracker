@@ -24,10 +24,12 @@
  	<GridLayout rows="auto, auto, auto, auto, auto, *, auto">
 		<Button row="0" text="start monitoring" tap="buttonStartTap"/>
 		<Button row="1" text="stop monitoring" tap="buttonStopTap"/>
-        <Label row="2" text="{{ status }}"/>
-        <ListView row="3" items="{{ locations }}">
+		<Label row="2" text="{{ 'Distance: ' + distance + ' meters' }}"/>
+        <Label row="3" text="{{ 'Speed: ' + speed + ' m/s' }}"/>
+        <Label row="4" text="{{ time }}" />
+        <ListView row="5" items="{{ locations }}">
 			<ListView.itemTemplate>
-				<Label text="{{ $value, latitude + ', ' + longitude + ', ' + altitude }}" />
+				<Label text="{{ $value, 'Current location: ' + latitude + ', ' + longitude }}" />
 			</ListView.itemTemplate>
 		</ListView>
  	</GridLayout>
