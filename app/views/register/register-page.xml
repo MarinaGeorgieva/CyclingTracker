@@ -1,0 +1,20 @@
+<Page xmlns="http://www.nativescript.org/tns.xsd" loaded="onLoaded">
+  <Page.actionBar>
+        <ActionBar title="Cycling Tracker">
+          <ActionBar.titleView>
+            <StackLayout orientation="horizontal" ios:horizontalAlignment="center" android:horizontalAlignment="left">
+              <Label text="Register"  class="action-label"/>
+            </StackLayout>
+          </ActionBar.titleView>  
+        </ActionBar>
+    </Page.actionBar>
+    <StackLayout orientation="vertical">
+    	<Image src="res://icon" class="logo" />
+        <TextField hint="Username" text="{{ username }}" id="usernameTextField"/>
+        <TextField secure="true" text="{{ password }}" hint="Password" id="passwordTextField"/>
+        <TextField secure="true" text="{{ confirmPassword }}" hint="Confirm password" id="confirmPasswordTextField"/>       
+        <TextField hint="Email" text="{{ email }}" keyboardType="email" id="emailTextField"/>
+        <TextField hint="Full Name" text="{{ displayName }}" id="fullNameTextField" />
+        <Button text="Register" tap="tapRegister" class="registerButton"/>
+    </StackLayout>
+</Page>

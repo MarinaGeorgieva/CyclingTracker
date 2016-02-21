@@ -25,6 +25,8 @@ TextField {
 	border-color: transparent;
 	background-color: transparent;
 	color: #FF7D2E;
-	margin: 50;
+	margin-left: 10;
+	margin-right: 10;
+	margin-top: 65;
     padding: 10;
 }

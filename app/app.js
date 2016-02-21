@@ -1,6 +1,6 @@
 var application = require("application");
+var appSettings = require('application-settings');
 
-global.profileCreated = 'profileCreated';
 global.userId = 'userId';
 global.userFullName = 'full name';
 

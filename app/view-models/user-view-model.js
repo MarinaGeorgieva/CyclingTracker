@@ -2,7 +2,8 @@ var frameModule = require("ui/frame");
 var Everlive = require('../libs/everlive/everlive.all.min');
 var el = new Everlive('nh2gqgfwwjk2l3nj');
 var Observable = require("data/observable").Observable;
-//var validator = require("email-validator");
+var Toast = require("nativescript-toast");
+var appSettings = require('application-settings');
 
 function User(info) {
 	info = info || {};
@@ -16,6 +17,7 @@ function User(info) {
 		el.authentication.login(viewModel.get("username"),
 			viewModel.get("password"),
 			function(data) {
+				Toast.makeText("Successfully logged in!").show();
 				var topmost = frameModule.topmost();
 				topmost.navigate("views/home/home-page");
 			},
@@ -30,11 +32,17 @@ function User(info) {
 			DisplayName: viewModel.get("displayName")
 		};
 
-		return el.Users.register(viewModel.get("username"),
+		if (viewModel.get("password") !== viewModel.get("confirmPassword")) {
+			alert("Password and confirm password don't match!");
+		}
+
+		el.Users.register(viewModel.get("username"),
 			viewModel.get("password"),
 			attrs,
 			function(data) {
-				alert(JSON.stringify(data));
+				Toast.makeText("Successfully registered!").show();
+				var topmost = frameModule.topmost();
+				topmost.navigate("views/login/login-page");
 			},
 			function(error) {
 				alert(JSON.stringify(error));
