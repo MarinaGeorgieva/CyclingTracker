@@ -1,7 +1,34 @@
+<!--
 <Page xmlns:maps="nativescript-googlemaps" navigatedTo="onNavigatedTo">
     <GridLayout rows="auto, *">
     	<Label row="0" text="{{ location, 'latitude: ' + location.latitude + ', longitude: ' + location.longitude }}"/>
-        <!--<maps:TnsGoogleMaps row="1" marker="{{ location }}" id="map"/> -->
+        <maps:TnsGoogleMaps row="1" marker="{{ location }}" id="map"/> 
         <Label row="2" text="{{ 'speed: ' + location.speed + 'm/s' }}" />
     </GridLayout>
+</Page>
+-->
+<Page xmlns="http://www.nativescript.org/tns.xsd" loaded="onLoaded">
+  <!--<GridLayout rows="auto, auto, auto, auto, auto" cols="auto, auto">
+       <!-- <ListView row="0" colSpan="2" items="{{ locations }}">
+			<ListView.itemTemplate>
+				<Label text="{{ $value, latitude + ', ' + longitude }}" />
+			</ListView.itemTemplate>
+		</ListView>
+		<!--<Label row="1" colSpan="2" text="Timer ...." />
+		<Label row="2" col="0" text="{{ 'Distance: ' + distance }}" />
+		<Label row="2" col="1" text="{{ 'Speed: ' + speed }}" /> 
+		<Button row="3" col="0" text="Start monitoring" tap="tapStart"/>
+		<Button row="4" col="0" text="Stop monitoring" tap="tapStop"/>
+		<Label row="1" text="{{ status }}"/>
+ 	</GridLayout> -->
+ 	<GridLayout rows="auto, auto, auto, auto, auto, *, auto">
+		<Button row="0" text="start monitoring" tap="buttonStartTap"/>
+		<Button row="1" text="stop monitoring" tap="buttonStopTap"/>
+        <Label row="2" text="{{ status }}"/>
+        <ListView row="3" items="{{ locations }}">
+			<ListView.itemTemplate>
+				<Label text="{{ $value, latitude + ', ' + longitude + ', ' + altitude }}" />
+			</ListView.itemTemplate>
+		</ListView>
+ 	</GridLayout>
 </Page>

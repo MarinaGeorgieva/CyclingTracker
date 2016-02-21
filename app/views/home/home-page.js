@@ -1,6 +1,6 @@
 //var vmModule = require("../home/home-view-model");
 var frameModule = require("ui/frame");
-var fs = require("file-system");
+//var fs = require("file-system");
 var observable = require("data/observable");
 var geolocation = require("nativescript-geolocation");
 
@@ -10,7 +10,7 @@ function pageLoaded(args) {
 	var page = args.object;
 	topmost = frameModule.topmost();
 }
-
+/*
 var location;
 
 function getLocation() {
@@ -43,10 +43,11 @@ function isLocationEnabled() {
 		geolocation.enableLocationRequest();
 	}
 }
-
+*/
 function tapTrack() {
-	isLocationEnabled();
-	getLocation();
+	//isLocationEnabled();
+	//getLocation();
+	topmost.navigate("views/track-tour/track-tour-page");
 }
 
 function tapProfile() {
