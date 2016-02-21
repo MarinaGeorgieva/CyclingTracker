@@ -13,3 +13,17 @@ button {
     color: #284848;
     horizontal-align: center;
 }
+
+.action-label {
+	margin-left: 5;
+	font-family: Harlow Solid Italic Italic;
+	color: #FA5F01;
+	font-size: 28;
+    vertical-align: center;
+}
+
+.action-image {
+	width: 50;
+	height: 50;
+    vertical-align: center;
+}
