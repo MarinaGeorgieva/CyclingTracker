@@ -3,7 +3,20 @@ var frameModule = require("ui/frame");
 var observable = require("data/observable");
 var observableArray = require("data/observable-array");
 var timer = require("timer");
+var appSettings = require('application-settings');
+var camera = require("camera");
+var imageSource = require("image-source");
+var Everlive = require('./../../libs/everlive/everlive.all.min');
+var el = new Everlive('nh2gqgfwwjk2l3nj');
 
+var btnSave = '';
+var btnShare = '';
+
+var activityIndicator = '';
+
+var trackObj = {};
+
+var myImage = '';
 var ViewModel = (function(_super) {
 	__extends(ViewModel, _super);
 
@@ -76,6 +89,9 @@ var ViewModel = (function(_super) {
 })(observable.Observable);
 
 exports.ViewModel = ViewModel;
+
+var page;
+var model = new ViewModel();
 
 function enableLocation() {
 	if (!geolocation.isEnabled()) {
@@ -193,19 +209,87 @@ function buttonStopTap(agrs) {
 	stopTimer();
 
 	console.log("button stop tap");
+
+	takePicture();
+
 	if (watchId) {
 		geolocation.clearWatch(watchId);
 	}
-}
 
-var page,
-	topmost;
-var model = new ViewModel();
+	//create track object
+	trackObj.userId = appSettings.getString(global.userId);
+	trackObj.userFullName = appSettings.getString(global.userFullName);
+	console.log(trackObj.userId);
+	console.log(trackObj.userFullName);
+	console.log(trackObj.trackPictureUrl);
+}
 
 function pageLoaded(args) {
 	page = args.object;
 	page.bindingContext = model;
+	//topmost = frameModule.topmost();
+	myImage = page.getViewById("myImg");
+
+	btnSave = page.getViewById("btnSave");
+	btnShare = page.getViewById("btnShare");
+
+	btnSave.visibility = "collapsed";
+	btnShare.visibility = "collapsed";
+
 	topmost = frameModule.topmost();
+}
+
+
+//}
+
+function saveTrack(){
+	console.log("---------save---------");
+	trackObj.isPublic = false;
+	uploadTrack(trackObj);
+}
+
+function shareTrack(){
+	console.log("---------share---------");
+	trackObj.isPublic = true;
+	uploadTrack(trackObj);
+}
+
+function takePicture() {
+	camera.takePicture().then(function(picture) {
+		myImage.imageSource = picture;
+
+		var convertedImage = myImage.imageSource.toBase64String('.jpg', 100);
+
+		 var file = {
+			Filename: Math.random().toString(36).substring(2, 15) + ".jpg",
+			ContentType: "image/jpeg",
+			base64: convertedImage
+		};
+
+		// UPLOAD FILE TO BACKEND SERVICE AND GET FILE ID
+		el.Files.create(file, function(response) {
+
+			trackObj.trackPictureUrl = response.result.Uri;
+			trackObj.Id = response.result.Id;
+
+			btnSave.visibility = "visible";
+			btnShare.visibility = "visible";
+			console.log("Successfully uploaded the image file at: " + response.result.Uri);
+		}, function(err) {
+			console.log("Unfortunately the upload failed: " + err.message);
+		});
+
+	});
+}
+
+function uploadTrack(trackObj){
+	var data = el.data('track');
+	data.create(trackObj, function(data) {
+		frameModule.topmost().navigate("views/home/home-page");
+	}, function(error) {
+		console.log('ERROR ' + JSON.stringify(error)); // error
+
+	});
 }
 
 function tapTrack() {
@@ -218,6 +302,9 @@ function tapProfile() {
 
 exports.tapTrack = tapTrack;
 exports.tapProfile = tapProfile;
+
 exports.buttonStartTap = buttonStartTap;
 exports.buttonStopTap = buttonStopTap;
 exports.onLoaded = pageLoaded;
+exports.saveTrack = saveTrack;
+exports.shareTrack = shareTrack;
