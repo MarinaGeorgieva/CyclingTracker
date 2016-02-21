@@ -1,6 +1,6 @@
 <Page xmlns="http://schemas.nativescript.org/tns.xsd" xmlns:drawer="nativescript-telerik-ui/sidedrawer" loaded="pageLoaded">
   <Page.actionBar>
-  	<ActionBar title="Cycling Tracker" android.icon="res://icon" android.iconVisibility="always" />
+  	<ActionBar title="" android.icon="~/images/bicycle-icon.png" android.iconVisibility="always" />
   </Page.actionBar>
   <drawer:RadSideDrawer>
   	<drawer:rad-side-drawer.drawerTransition>
