@@ -26,6 +26,7 @@ function pageLoaded(args) {
 		tapLogin: function() {
 
 			console.log('loginTapped');
+			//frameModule.topmost().navigate("views/main-page/main-page");
 
 			var userName = page.getViewById('loginUsernameTextView').text;
 			var pass = page.getViewById('loginPassTextView').text;
@@ -53,8 +54,10 @@ function pageLoaded(args) {
 					} else {
 						appSettings.setString(global.userId, currentUser.Id);
 						appSettings.setBoolean(global.profileCreated, true);
-						frameModule.topmost().navigate("views/main-page/main-page");
-					};
+						console.log('-------------------tuk befor------------------');
+						frameModule.topmost().navigate("views/home/home-page");
+						console.log('-------------------tuk after------------------');
+						};
 
 				}, function(error) {
 					console.log(JSON.stringify(error));
