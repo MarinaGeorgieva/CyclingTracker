@@ -1,8 +1,25 @@
-<Page xmlns="http://schemas.nativescript.org/tns.xsd" loaded="pageLoaded">
-  <ScrollView>
-    <StackLayout>
-    <Label text="Profile page"/>        
-        <Image id="myImg"/>
-      </StackLayout>
-    </ScrollView>
+<Page xmlns="http://schemas.nativescript.org/tns.xsd" xmlns:drawer="nativescript-telerik-ui/sidedrawer" loaded="pageLoaded">
+  <Page.actionBar>
+  	<ActionBar title="Cycling Tracker" android.icon="res://icon" android.iconVisibility="always" />
+  </Page.actionBar>
+  <drawer:RadSideDrawer>
+  	<drawer:rad-side-drawer.drawerTransition>
+        <drawer:PushTransition />
+    </drawer:rad-side-drawer.drawerTransition>
+    <drawer:RadSideDrawer.mainContent>
+    	<ScrollView>
+    		<StackLayout>
+    			<Label text="Profile page"/>        
+        		<Image id="myImg"/>
+      		</StackLayout>
+    	</ScrollView>
+    </drawer:RadSideDrawer.mainContent>
+    <drawer:RadSideDrawer.drawerContent>
+      <StackLayout>
+    		<Button text="Track" tap="tapTrack" />
+    		<Button text="Profile" tap="tapProfile" />
+    		<Button text="Shared tracks" tap="tapTrack" />
+     	</StackLayout>
+    </drawer:RadSideDrawer.drawerContent>
+  </drawer:RadSideDrawer>
 </Page>

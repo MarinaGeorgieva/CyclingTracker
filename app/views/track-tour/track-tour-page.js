@@ -1,5 +1,5 @@
 var geolocation = require("nativescript-geolocation");
-var frame = require("ui/frame");
+var frameModule = require("ui/frame");
 var observable = require("data/observable");
 var observableArray = require("data/observable-array");
 var timer = require("timer");
@@ -76,9 +76,6 @@ var ViewModel = (function(_super) {
 })(observable.Observable);
 
 exports.ViewModel = ViewModel;
-
-var page;
-var model = new ViewModel();
 
 function enableLocation() {
 	if (!geolocation.isEnabled()) {
@@ -201,11 +198,26 @@ function buttonStopTap(agrs) {
 	}
 }
 
+var page,
+	topmost;
+var model = new ViewModel();
+
 function pageLoaded(args) {
 	page = args.object;
 	page.bindingContext = model;
+	topmost = frameModule.topmost();
 }
 
+function tapTrack() {
+	topmost.navigate("views/track-tour/track-tour-page");
+}
+
+function tapProfile() {
+	topmost.navigate("views/profile/profile-page");
+}
+
+exports.tapTrack = tapTrack;
+exports.tapProfile = tapProfile;
 exports.buttonStartTap = buttonStartTap;
 exports.buttonStopTap = buttonStopTap;
 exports.onLoaded = pageLoaded;
