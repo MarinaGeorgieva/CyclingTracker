@@ -1,4 +1,14 @@
 <Page xmlns="http://schemas.nativescript.org/tns.xsd" loaded="pageLoaded">
+    <Page.actionBar>
+        <ActionBar title="Cycling Tracker">
+          <ActionBar.titleView>
+            <StackLayout orientation="horizontal" ios:horizontalAlignment="center" android:horizontalAlignment="left">
+              <Image src="res://icon" class="action-image"/>
+              <Label text="Cycling Tracker"  class="action-label"/>
+            </StackLayout>
+          </ActionBar.titleView>  
+        </ActionBar>
+    </Page.actionBar>
   <ScrollView>
     <StackLayout>
         <Label text="Register"/>
