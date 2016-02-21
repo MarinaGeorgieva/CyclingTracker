@@ -43,7 +43,7 @@ function pageLoaded(args) {
 			query.where()
 				.eq('userName', userName)
 				.done()
-				.select('userName', 'password', 'Id');
+				.select('userName', 'password', 'Id', 'fullName');
 
 			data.get(query)
 				.then(function(data) {
@@ -52,8 +52,11 @@ function pageLoaded(args) {
 						Toast.makeText("Password incorrect!").show();
 						return;
 					} else {
+						console.log('-------------------tuk befor sets------------------');
 						appSettings.setString(global.userId, currentUser.Id);
+						appSettings.setString(global.userFullName, currentUser.fullName);
 						appSettings.setBoolean(global.profileCreated, true);
+
 						console.log('-------------------tuk befor------------------');
 						frameModule.topmost().navigate("views/home/home-page");
 						console.log('-------------------tuk after------------------');
@@ -103,6 +106,7 @@ function pageLoaded(args) {
 			var data = el.data('userInfo');
 			data.create(user, function(data) {
 				appSettings.setString(global.userId, data.result.Id);
+				appSettings.setString(global.userFullName, data.result.fullName);
 				appSettings.setBoolean(global.profileCreated, true);
 				frameModule.topmost().navigate("views/home/home-page");
 			}, function(error) {
