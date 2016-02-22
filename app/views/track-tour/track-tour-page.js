@@ -8,6 +8,7 @@ var camera = require("camera");
 var imageSource = require("image-source");
 var Everlive = require('./../../libs/everlive/everlive.all.min');
 var el = new Everlive('nh2gqgfwwjk2l3nj');
+var Toast = require("nativescript-toast");
 
 var btnSave = '';
 var btnShare = '';
@@ -118,7 +119,9 @@ function getCurrentLocation() {
 }
 
 function getDistance(loc1, loc2) {
-	return geolocation.distance(loc1, loc2);
+	var distance = geolocation.distance(loc1, loc2);
+
+	return distance;
 }
 
 var seconds = 0,
@@ -364,6 +367,7 @@ function uploadTrack(trackObj) {
 	data.create(trackObj, function(data) {
 		frameModule.topmost().navigate("views/home/home-page");
 	}, function(error) {
+		Toast.makeText("Check internet connection!").show();
 		console.log('ERROR ' + JSON.stringify(error)); // error
 	});
 }
