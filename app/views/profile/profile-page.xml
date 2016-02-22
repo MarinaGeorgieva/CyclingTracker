@@ -16,9 +16,15 @@
     <drawer:RadSideDrawer.mainContent>
     	<ScrollView>
     		<StackLayout>
-    			<Label text="Profile page"/>        
-        		<Image id="myImg"/>
-      		</StackLayout>
+          <Image src="~/images/default-avatar.png" class="profile-picture" />
+          <Label text="{{ fullName }}" />
+          <Label text="My tours" />
+          <ListView items="{{ tours }}" itemTap="tourItemTapped">
+            <ListView.itemTemplate>
+              <Label text="{{ Created at }}" />
+            </ListView.itemTemplate>
+          </ListView>
+        </StackLayout>
     	</ScrollView>
     </drawer:RadSideDrawer.mainContent>
     <drawer:RadSideDrawer.drawerContent>

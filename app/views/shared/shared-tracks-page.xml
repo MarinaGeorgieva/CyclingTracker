@@ -15,7 +15,12 @@
     </drawer:rad-side-drawer.drawerTransition>
     <drawer:RadSideDrawer.mainContent>
     	<StackLayout>
-    		<Label text="Shared tracks listing" />
+    		<Label text="Shared tours" />
+        <ListView items="{{ tours }}">
+          <ListView.itemTemplate>
+            <Label text="{{ trackPictureUrl }}" />
+          </ListView.itemTemplate>
+        </ListView>
      	</StackLayout>
     </drawer:RadSideDrawer.mainContent>
     <drawer:RadSideDrawer.drawerContent>

@@ -20,6 +20,11 @@
     margin-right: 0;
 }
 
+.profile-picture {
+	width: 50;
+	height: 50;
+}
+
 Button {
 	background-color: #0055FF;
 	color: #FFFFFF;

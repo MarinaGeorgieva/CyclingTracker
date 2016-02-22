@@ -217,7 +217,7 @@ function buttonStopTap(agrs) {
 	}
 
 	//create track object
-	trackObj.userId = appSettings.getString(global.userId);
+	trackObj.userId = appSettings.getString("userId");
 	console.log(trackObj.userId);
 	console.log(trackObj.trackPictureUrl);
 }
