@@ -1,0 +1,32 @@
+.tour-info-label {
+	margin-left: 20;
+	margin-bottom: 10;
+	font-size: 18;
+	font-weight: bold;
+	text-align: left;
+}
+
+.location-label {
+	margin-left: 20;
+	margin-top: 5;
+	margin-bottom: 5;
+	font-size: 14;
+}
+
+.tour-image {
+	border-radius: 30;
+	margin-left: 10;
+	width: 180;
+	height: 150;
+}
+
+.tour-name-field {
+	horizontal-align: center;
+	vertical-align: top;
+}
+
+.save-share-button {
+	margin-left: 10;
+	margin-top: 25;
+	width: 175;
+}

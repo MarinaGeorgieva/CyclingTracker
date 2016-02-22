@@ -27,21 +27,21 @@
           <StackLayout>
   				  <Button text="Start monitoring" tap="buttonStartTap" id="btnStart"/>
   				  <Button text="Stop monitoring" tap="buttonStopTap" id="btnStop"/>
-            <GridLayout rows="auto" columns="auto, auto">
-                <Label row="0" col="0" text="{{ 'Distance: ' + distance + ' meters' }}"/>
-                <Label row="0" col="1" text="{{ 'Speed: ' + speed + ' m/s' }}"/>
-            </GridLayout>  				  
-      		  <Label text="{{ time }}" />
+            <Label text="{{ 'Distance: ' + distance + ' meters' }}" class="tour-info-label"/>
+            <Label text="{{ 'Speed: ' + speed + ' m/s' }}" class="tour-info-label"/>
+      		  <Label text="{{ 'Moving time: ' + time }}" class="tour-info-label"/>
       		  <ListView items="{{ locations }}">
   				  	<ListView.itemTemplate>
-  				  		<Label text="{{ 'Current location: ' + latitude + ', ' + longitude }}" />
+  				  		<Label text="{{ 'Current location: ' + latitude + ', ' + longitude }}" class="location-label" />
   				  	</ListView.itemTemplate>
   				  </ListView>
-            <Image id="myImg" />
-            <TextField text="{{ name }}" hint="Tour name" id="nameTextField"/>
-            <GridLayout columns="2*, 3*">
-              <Button col="0" text="Save" tap="saveTrack" id="btnSave"/>
-              <Button col="1" text="Save and Share" tap="shareTrack" id="btnShare"/>
+            <GridLayout rows="auto" columns="auto, auto">
+                <Image row="0" col="0" id="myImg" class="tour-image" />
+                <TextField row="0" col="1" text="{{ name }}" hint="Tour name" id="nameTextField" class="tour-name-field" />
+            </GridLayout>
+            <GridLayout columns="*, *">
+              <Button col="0" text="Save" tap="saveTrack" id="btnSave" class="save-share-button"/>
+              <Button col="1" text="Save and Share" tap="shareTrack" id="btnShare" class="save-share-button"/>
             </GridLayout>                    
    			  </StackLayout>
         </ScrollView>
