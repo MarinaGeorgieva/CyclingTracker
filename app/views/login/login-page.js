@@ -24,16 +24,10 @@ function pageLoaded(args) {
 	password = page.getViewById("passwordTextField").text;
 
 	// If user is already logged in
-	el.Users.currentUser()
-		.then(function(data) {
-				console.log("User is logged in!");
-				topmost.navigate("views/home/home-page");
-				//alert(JSON.stringify(data));
-			},
-			function(error) {
-				console.log("No user!");
-				//alert(JSON.stringify(error));
-			});
+	var currentUserId = appSettings.getString("userId");
+	if (currentUserId) {
+		topmost.navigate("views/home/home-page");
+	}
 }
 
 function tapLogin() {

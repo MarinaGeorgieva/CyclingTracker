@@ -14,9 +14,14 @@ function User(info) {
 	});
 
 	viewModel.login = function() {
+		var userId;
+
 		el.authentication.login(viewModel.get("username"),
 			viewModel.get("password"),
 			function(data) {
+				userId = JSON.stringify(data.result.principal_id);
+				appSettings.setString("userId", userId);
+
 				Toast.makeText("Successfully logged in!").show();
 				var topmost = frameModule.topmost();
 				topmost.navigate("views/home/home-page");
@@ -29,7 +34,7 @@ function User(info) {
 	viewModel.register = function() {
 		var attrs = {
 			Email: viewModel.get("email"),
-			DisplayName: viewModel.get("displayName")
+			DisplayName: viewModel.get("displayName"),
 		};
 
 		if (viewModel.get("password") !== viewModel.get("confirmPassword")) {

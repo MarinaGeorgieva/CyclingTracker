@@ -218,26 +218,13 @@ function buttonStopTap(agrs) {
 
 	//create track object
 	trackObj.userId = appSettings.getString(global.userId);
-	trackObj.userFullName = appSettings.getString(global.userFullName);
 	console.log(trackObj.userId);
-	console.log(trackObj.userFullName);
 	console.log(trackObj.trackPictureUrl);
 }
 
 function pageLoaded(args) {
 	page = args.object;
 	page.bindingContext = model;
-
-	el.Users.currentUser()
-		.then(function(data) {
-				console.log("User is logged in!");
-				console.log(JSON.stringify(data))
-					//alert(JSON.stringify(data));
-			},
-			function(error) {
-				console.log("No user!");
-				alert(JSON.stringify(error));
-			});
 
 	myImage = page.getViewById("myImg");
 
@@ -248,8 +235,6 @@ function pageLoaded(args) {
 	btnShare.visibility = "collapsed";
 
 	topmost = frameModule.topmost();
-
-
 }
 
 function saveTrack() {
