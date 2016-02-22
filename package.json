@@ -1,16 +1,16 @@
 {
-  "nativescript": {
-    "id": "org.nativescript.TestApp",
-    "tns-android": {
-      "version": "1.6.1"
-    }
-  },
-  "dependencies": {
-    "moment": "^2.11.2",
-    "nativescript-geolocation": "0.0.8",
-    "nativescript-telerik-ui": "^0.2.4",
-    "nativescript-toast": "^1.2.0",
-    "tns-core-modules": "1.5.2",
-    "tns-core-modules-widgets": "^1.6.1"
-  }
+	"nativescript": {
+		"id": "org.nativescript.TestApp",
+		"tns-android": {
+			"version": "1.6.1"
+		}
+	},
+	"dependencies": {
+		"moment": "^2.11.2",
+		"nativescript-geolocation": "0.0.8",
+		"nativescript-telerik-ui": "^0.2.4",
+		"nativescript-toast": "^1.2.0",
+		"tns-core-modules": "1.5.2",
+		"tns-core-modules-widgets": "^1.6.1"
+	}
 }

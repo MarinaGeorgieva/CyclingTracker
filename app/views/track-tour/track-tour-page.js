@@ -15,8 +15,6 @@ var btnShare = '';
 var btnStart = '';
 var btnStop = '';
 
-var activityIndicator = '';
-
 var trackObj = {};
 
 var myImage = '';
@@ -232,7 +230,10 @@ function buttonStartTap(agrs) {
 }
 
 function buttonStopTap(agrs) {
-	
+	stopTimer();
+
+	console.log("button stop tap");
+
 	appSettings.setBoolean(global.isTracking, false);
 	
 	btnStart.scaleX = 0;
@@ -253,21 +254,8 @@ function buttonStopTap(agrs) {
                 scale: { x: 1, y: 1 },
                 duration: 300
             })
+            .then(takePicture())
         });
-
-
-
-
-
-
-
-
-
-	stopTimer();
-
-	console.log("button stop tap");
-
-	takePicture();
 
 	if (watchId) {
 		geolocation.clearWatch(watchId);
@@ -290,12 +278,9 @@ function pageLoaded(args) {
 
 	btnSave = page.getViewById("btnSave");
 	btnShare = page.getViewById("btnShare");
-
 	btnSave.visibility = "collapsed";
 	btnShare.visibility = "collapsed";
 
-	// btnStart.visibility = "visible";
-	// btnStop.visibility = "collapsed";
 	if (appSettings.getBoolean(global.isTracking)) {
 		btnStart.visibility = "collapsed";
 		btnStop.visibility = "visible";
@@ -322,9 +307,11 @@ function shareTrack() {
 function takePicture() {
 	camera.takePicture().then(function(picture) {
 		myImage.imageSource = picture;
-
+		myImage.scaleX = 0.9;
+		myImage.scaleY = 0.9;
 		var convertedImage = myImage.imageSource.toBase64String('.jpg', 100);
 
+		
 		var file = {
 			Filename: Math.random().toString(36).substring(2, 15) + ".jpg",
 			ContentType: "image/jpeg",
@@ -335,9 +322,35 @@ function takePicture() {
 		el.Files.create(file, function(response) {
 			trackObj.trackPictureUrl = response.result.Uri;
 			trackObj.Id = response.result.Id;
-
+			
 			btnSave.visibility = "visible";
+			btnSave.scaleX = 0;			
+			btnSave.scaleY = 0;			
+			btnSave.animate({
+                scale: { x: 1.3, y: 1.3 },
+                duration: 300
+            })
+            .then(function(){
+            	return btnSave.animate({
+                	scale: { x: 1, y: 1 },
+               		duration: 100
+            	})
+            });
+
 			btnShare.visibility = "visible";
+			btnShare.scaleX = 0;			
+			btnShare.scaleY = 0;			
+			btnShare.animate({
+                scale: { x: 1.3, y: 1.3 },
+                duration: 300
+            })
+            .then(function(){
+            	return btnShare.animate({
+                	scale: { x: 1, y: 1 },
+               		duration: 100
+            	})
+            });
+
 			console.log("Successfully uploaded the image file at: " + response.result.Uri);
 		}, function(err) {
 			console.log("Unfortunately the upload failed: " + err.message);

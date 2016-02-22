@@ -25,8 +25,8 @@
    		<drawer:RadSideDrawer.mainContent>
 	      <ScrollView>
           <GridLayout rows="auto, auto, auto, auto, auto, auto, auto, auto">
-  				  <Button row="0" text="start monitoring" tap="buttonStartTap" id="btnStart"/>
-  				  <Button row="1" text="stop monitoring" tap="buttonStopTap" id="btnStop"/>
+  				  <Button row="0" text="Start monitoring" tap="buttonStartTap" id="btnStart"/>
+  				  <Button row="1" text="Stop monitoring" tap="buttonStopTap" id="btnStop"/>
   				  <Label row="2" text="{{ 'Distance: ' + distance + ' meters' }}"/>
       		  <Label row="3" text="{{ 'Speed: ' + speed + ' m/s' }}"/>
       		  <Label row="4" text="{{ time }}" />
@@ -35,11 +35,11 @@
   				  		<Label text="{{ $value, 'Current location: ' + latitude + ', ' + longitude }}" />
   				  	</ListView.itemTemplate>
   				  </ListView>
-            <Image id="myImg" row="6"/>
-            <StackLayout row="7" orientation="horizontal">
-              <Button text="Save" tap="saveTrack" id="btnSave"/>
-              <Button text="Save and Share" tap="shareTrack" id="btnShare"/>
-            </StackLayout>
+            <GridLayout row="6" columns="2*, 3*">
+              <Button col="0" text="Save" tap="saveTrack" id="btnSave"/>
+              <Button col="1" text="Save and Share" tap="shareTrack" id="btnShare"/>
+            </GridLayout>         
+            <Image id="myImg" row="7"/>
    			  </GridLayout>
         </ScrollView>
     	</drawer:RadSideDrawer.mainContent>
