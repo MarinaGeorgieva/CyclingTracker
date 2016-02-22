@@ -4,7 +4,7 @@
       <ActionBar.titleView>
         <StackLayout orientation="horizontal" ios:horizontalAlignment="center" android:horizontalAlignment="left">
           <Image src="res://icon" class="action-image"/>
-          <Label text="Cycling Tracker"  class="action-label"/>
+          <Label text="Shared Tours"  class="action-label"/>
         </StackLayout>
       </ActionBar.titleView>  
     </ActionBar>

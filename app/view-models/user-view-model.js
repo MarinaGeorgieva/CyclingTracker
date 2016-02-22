@@ -19,7 +19,8 @@ function User(info) {
 		el.authentication.login(viewModel.get("username"),
 			viewModel.get("password"),
 			function(data) {
-				userId = JSON.stringify(data.result.principal_id);
+				userId = data.result.principal_id;
+				console.log(userId);
 				appSettings.setString("userId", userId);
 
 				Toast.makeText("Successfully logged in!").show();

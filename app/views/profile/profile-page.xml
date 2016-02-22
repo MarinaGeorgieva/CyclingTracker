@@ -4,7 +4,7 @@
       <ActionBar.titleView>
         <StackLayout orientation="horizontal" ios:horizontalAlignment="center" android:horizontalAlignment="left">
           <Image src="res://icon" class="action-image"/>
-          <Label text="Cycling Tracker"  class="action-label"/>
+          <Label text="{{ username }}"  class="action-label"/>
         </StackLayout>
       </ActionBar.titleView>  
     </ActionBar>
@@ -21,7 +21,7 @@
           <Label text="My tours" />
           <ListView items="{{ tours }}" itemTap="tourItemTapped">
             <ListView.itemTemplate>
-              <Label text="{{ Created at }}" />
+              <Label text="{{ createdAt }}" />
             </ListView.itemTemplate>
           </ListView>
         </StackLayout>

@@ -14,24 +14,22 @@ function SharedToursViewModel(items) {
 			.eq('isPublic', true)
 			.done()
 			.select('userId', 'distance', 'trackPictureUrl')
-			.orderDesc('Created-at')
-			.take(1);
+			.orderDesc('CreatedAt')
+			.take(10);
 
 		data.get(query)
 			.then(function(data) {
 				console.log("-------------------success---------------");
 				console.log(JSON.stringify(data.result));
 				data.result.forEach(function(tour) {
-						console.log(tour);
-						viewModel.push({
-							userId: tour.userId,
-							distance: tour.distance,
-							trackPictureUrl: tour.trackPictureUrl
-						});
-					})
-					//return data.result;
+					viewModel.push({
+						userId: tour.userId,
+						distance: tour.distance,
+						trackPictureUrl: tour.trackPictureUrl
+					});
+				})
 			}, function(error) {
-				console.log(JSON.stringify(error));
+				console.log(JSON.stringify(error.message));
 			});
 	};
 
