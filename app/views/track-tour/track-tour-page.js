@@ -16,6 +16,8 @@ var btnShare = '';
 var btnStart = '';
 var btnStop = '';
 
+var nameTextField;
+
 var trackObj = {};
 
 var myImage = '';
@@ -87,6 +89,23 @@ var ViewModel = (function(_super) {
 		configurable: true
 	});
 
+	Object.defineProperty(ViewModel.prototype, "name", {
+		get: function() {
+			if (!this._name) {
+				this._name = "";
+			}
+			return this._name;
+		},
+		set: function(value) {
+			if (this._name !== value) {
+				this._name = value;
+				this.notifyPropertyChange("name", value);
+			}
+		},
+		enumerable: true,
+		configurable: true
+	});
+
 	return ViewModel;
 })(observable.Observable);
 
@@ -120,7 +139,6 @@ function getCurrentLocation() {
 
 function getDistance(loc1, loc2) {
 	var distance = geolocation.distance(loc1, loc2);
-
 	return distance;
 }
 
@@ -193,21 +211,27 @@ function buttonStartTap(agrs) {
 	btnStop.scaleY = 0;
 
 	btnStart.animate({
-                scale: { x: 0, y: 0 },
-                duration: 300
-            })
-            .then(function () {
-                return btnStart.visibility = "collapsed";
-            })
-            .then(function () {
-                return btnStop.visibility = "visible";
-            })
-            .then(function () {
-                return btnStop.animate({
-                scale: { x: 1, y: 1 },
-                duration: 300
-            })
-        });
+			scale: {
+				x: 0,
+				y: 0
+			},
+			duration: 300
+		})
+		.then(function() {
+			return btnStart.visibility = "collapsed";
+		})
+		.then(function() {
+			return btnStop.visibility = "visible";
+		})
+		.then(function() {
+			return btnStop.animate({
+				scale: {
+					x: 1,
+					y: 1
+				},
+				duration: 300
+			})
+		});
 
 	startTimer();
 
@@ -217,6 +241,7 @@ function buttonStartTap(agrs) {
 		function(loc) {
 			if (loc) {
 				model.locations.push(loc);
+				console.log("Locations length: " + model.locations.length);
 				var currentDistance = getDistance(model.locations.getItem(model.locations.length - 2), model.locations.getItem(model.locations.length - 1)) | 0;
 				model.set("speed", model.locations.getItem(model.locations.length - 1).speed);
 				model.set("distance", model.distance + currentDistance);
@@ -226,39 +251,42 @@ function buttonStartTap(agrs) {
 			console.log("Error: " + e.message);
 		}, {
 			desiredAccuracy: 3,
-			updateDistance: 1,
-			updateTime: 1000 * 5
+			updateDistance: 2,
+			updateTime: 1000 * 2
 		});
-	console.log("buttonStartTap");
 }
 
 function buttonStopTap(agrs) {
 	stopTimer();
 
-	console.log("button stop tap");
-
 	appSettings.setBoolean(global.isTracking, false);
-	
+
 	btnStart.scaleX = 0;
 	btnStart.scaleY = 0;
 
 	btnStop.animate({
-                scale: { x: 0, y: 0 },
-                duration: 300
-            })
-            .then(function () {
-                return btnStop.visibility = "collapsed";
-            })
-            .then(function () {
-                return btnStart.visibility = "visible";
-            })
-            .then(function () {
-                return btnStart.animate({
-                scale: { x: 1, y: 1 },
-                duration: 300
-            })
-            .then(takePicture())
-        });
+			scale: {
+				x: 0,
+				y: 0
+			},
+			duration: 300
+		})
+		.then(function() {
+			return btnStop.visibility = "collapsed";
+		})
+		.then(function() {
+			return btnStart.visibility = "visible";
+		})
+		.then(function() {
+			return btnStart.animate({
+					scale: {
+						x: 1,
+						y: 1
+					},
+					duration: 300
+				})
+				.then(takePicture())
+		});
 
 	if (watchId) {
 		geolocation.clearWatch(watchId);
@@ -266,8 +294,21 @@ function buttonStopTap(agrs) {
 
 	//create track object
 	trackObj.userId = appSettings.getString("userId");
-	console.log(trackObj.userId);
-	console.log(trackObj.trackPictureUrl);
+	getUserFullName(trackObj.userId);
+	trackObj.distance = model.get("distance");
+}
+
+function getUserFullName(userId) {
+	var fullname = "";
+
+	el.Users.getById(userId)
+		.then(function(data) {
+				fullname = data.result.DisplayName;
+				trackObj.userFullName = fullname;
+			},
+			function(error) {
+				//alert(JSON.stringify(error.message));
+			});
 }
 
 function pageLoaded(args) {
@@ -279,17 +320,20 @@ function pageLoaded(args) {
 	btnStart = page.getViewById("btnStart");
 	btnStop = page.getViewById("btnStop");
 
+	nameTextField = page.getViewById("nameTextField");
+
 	btnSave = page.getViewById("btnSave");
 	btnShare = page.getViewById("btnShare");
 	btnSave.visibility = "collapsed";
 	btnShare.visibility = "collapsed";
+	nameTextField.visibility = "collapsed";
 
 	if (appSettings.getBoolean(global.isTracking)) {
 		btnStart.visibility = "collapsed";
 		btnStop.visibility = "visible";
-	}else {
+	} else {
 		btnStart.visibility = "visible";
-		btnStop.visibility = "collapsed";		
+		btnStop.visibility = "collapsed";
 	}
 
 	topmost = frameModule.topmost();
@@ -297,12 +341,14 @@ function pageLoaded(args) {
 
 function saveTrack() {
 	console.log("---------save---------");
+	trackObj.name = nameTextField.text;
 	trackObj.isPublic = false;
 	uploadTrack(trackObj);
 }
 
 function shareTrack() {
 	console.log("---------share---------");
+	trackObj.name = nameTextField.text;
 	trackObj.isPublic = true;
 	uploadTrack(trackObj);
 }
@@ -314,7 +360,7 @@ function takePicture() {
 		myImage.scaleY = 0.9;
 		var convertedImage = myImage.imageSource.toBase64String('.jpg', 100);
 
-		
+
 		var file = {
 			Filename: Math.random().toString(36).substring(2, 15) + ".jpg",
 			ContentType: "image/jpeg",
@@ -325,34 +371,47 @@ function takePicture() {
 		el.Files.create(file, function(response) {
 			trackObj.trackPictureUrl = response.result.Uri;
 			trackObj.Id = response.result.Id;
-			
+
+			nameTextField.visibility = "visible";
 			btnSave.visibility = "visible";
-			btnSave.scaleX = 0;			
-			btnSave.scaleY = 0;			
+			btnSave.scaleX = 0;
+			btnSave.scaleY = 0;
 			btnSave.animate({
-                scale: { x: 1.3, y: 1.3 },
-                duration: 300
-            })
-            .then(function(){
-            	return btnSave.animate({
-                	scale: { x: 1, y: 1 },
-               		duration: 100
-            	})
-            });
+					scale: {
+						x: 1.3,
+						y: 1.3
+					},
+					duration: 300
+				})
+				.then(function() {
+					return btnSave.animate({
+						scale: {
+							x: 1,
+							y: 1
+						},
+						duration: 100
+					})
+				});
 
 			btnShare.visibility = "visible";
-			btnShare.scaleX = 0;			
-			btnShare.scaleY = 0;			
+			btnShare.scaleX = 0;
+			btnShare.scaleY = 0;
 			btnShare.animate({
-                scale: { x: 1.3, y: 1.3 },
-                duration: 300
-            })
-            .then(function(){
-            	return btnShare.animate({
-                	scale: { x: 1, y: 1 },
-               		duration: 100
-            	})
-            });
+					scale: {
+						x: 1.3,
+						y: 1.3
+					},
+					duration: 300
+				})
+				.then(function() {
+					return btnShare.animate({
+						scale: {
+							x: 1,
+							y: 1
+						},
+						duration: 100
+					})
+				});
 
 			console.log("Successfully uploaded the image file at: " + response.result.Uri);
 		}, function(err) {
@@ -365,9 +424,10 @@ function takePicture() {
 function uploadTrack(trackObj) {
 	var data = el.data('track');
 	data.create(trackObj, function(data) {
-		frameModule.topmost().navigate("views/home/home-page");
+		Toast.makeText("Successfully saved current tour!").show();
+		frameModule.topmost().navigate("views/profile/profile-page");
 	}, function(error) {
-		Toast.makeText("Check internet connection!").show();
+		Toast.makeText("No internet connection!").show();
 		console.log('ERROR ' + JSON.stringify(error)); // error
 	});
 }

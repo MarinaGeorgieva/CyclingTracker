@@ -24,23 +24,26 @@
     	</drawer:rad-side-drawer.drawerTransition>
    		<drawer:RadSideDrawer.mainContent>
 	      <ScrollView>
-          <GridLayout rows="auto, auto, auto, auto, auto, auto, auto, auto">
-  				  <Button row="0" text="Start monitoring" tap="buttonStartTap" id="btnStart"/>
-  				  <Button row="1" text="Stop monitoring" tap="buttonStopTap" id="btnStop"/>
-  				  <Label row="2" text="{{ 'Distance: ' + distance + ' meters' }}"/>
-      		  <Label row="3" text="{{ 'Speed: ' + speed + ' m/s' }}"/>
-      		  <Label row="4" text="{{ time }}" />
-      		  <ListView row="5" items="{{ locations }}">
+          <StackLayout>
+  				  <Button text="Start monitoring" tap="buttonStartTap" id="btnStart"/>
+  				  <Button text="Stop monitoring" tap="buttonStopTap" id="btnStop"/>
+            <GridLayout rows="auto" columns="auto, auto">
+                <Label row="0" col="0" text="{{ 'Distance: ' + distance + ' meters' }}"/>
+                <Label row="0" col="1" text="{{ 'Speed: ' + speed + ' m/s' }}"/>
+            </GridLayout>  				  
+      		  <Label text="{{ time }}" />
+      		  <ListView items="{{ locations }}">
   				  	<ListView.itemTemplate>
-  				  		<Label text="{{ $value, 'Current location: ' + latitude + ', ' + longitude }}" />
+  				  		<Label text="{{ 'Current location: ' + latitude + ', ' + longitude }}" />
   				  	</ListView.itemTemplate>
   				  </ListView>
-            <GridLayout row="6" columns="2*, 3*">
+            <Image id="myImg" />
+            <TextField text="{{ name }}" hint="Tour name" id="nameTextField"/>
+            <GridLayout columns="2*, 3*">
               <Button col="0" text="Save" tap="saveTrack" id="btnSave"/>
               <Button col="1" text="Save and Share" tap="shareTrack" id="btnShare"/>
-            </GridLayout>         
-            <Image id="myImg" row="7"/>
-   			  </GridLayout>
+            </GridLayout>                    
+   			  </StackLayout>
         </ScrollView>
     	</drawer:RadSideDrawer.mainContent>
     	<drawer:RadSideDrawer.drawerContent>
