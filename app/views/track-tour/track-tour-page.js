@@ -227,7 +227,18 @@ function buttonStopTap(agrs) {
 function pageLoaded(args) {
 	page = args.object;
 	page.bindingContext = model;
-	//topmost = frameModule.topmost();
+
+	el.Users.currentUser()
+		.then(function(data) {
+				console.log("User is logged in!");
+				console.log(JSON.stringify(data))
+					//alert(JSON.stringify(data));
+			},
+			function(error) {
+				console.log("No user!");
+				alert(JSON.stringify(error));
+			});
+
 	myImage = page.getViewById("myImg");
 
 	btnSave = page.getViewById("btnSave");
@@ -237,18 +248,17 @@ function pageLoaded(args) {
 	btnShare.visibility = "collapsed";
 
 	topmost = frameModule.topmost();
+
+
 }
 
-
-//}
-
-function saveTrack(){
+function saveTrack() {
 	console.log("---------save---------");
 	trackObj.isPublic = false;
 	uploadTrack(trackObj);
 }
 
-function shareTrack(){
+function shareTrack() {
 	console.log("---------share---------");
 	trackObj.isPublic = true;
 	uploadTrack(trackObj);
@@ -260,7 +270,7 @@ function takePicture() {
 
 		var convertedImage = myImage.imageSource.toBase64String('.jpg', 100);
 
-		 var file = {
+		var file = {
 			Filename: Math.random().toString(36).substring(2, 15) + ".jpg",
 			ContentType: "image/jpeg",
 			base64: convertedImage
@@ -268,7 +278,6 @@ function takePicture() {
 
 		// UPLOAD FILE TO BACKEND SERVICE AND GET FILE ID
 		el.Files.create(file, function(response) {
-
 			trackObj.trackPictureUrl = response.result.Uri;
 			trackObj.Id = response.result.Id;
 
@@ -282,13 +291,12 @@ function takePicture() {
 	});
 }
 
-function uploadTrack(trackObj){
+function uploadTrack(trackObj) {
 	var data = el.data('track');
 	data.create(trackObj, function(data) {
 		frameModule.topmost().navigate("views/home/home-page");
 	}, function(error) {
 		console.log('ERROR ' + JSON.stringify(error)); // error
-
 	});
 }
 

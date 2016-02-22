@@ -9,7 +9,7 @@
         </ActionBar>
     </Page.actionBar>
     <StackLayout orientation="vertical">
-    	<Image src="res://icon" class="logo" />
+    	<Image src="~/images/logo.png" class="logo" />
         <TextField hint="Username" text="{{ username }}" id="usernameTextField"/>
         <TextField secure="true" text="{{ password }}" hint="Password" id="passwordTextField"/>
         <TextField secure="true" text="{{ confirmPassword }}" hint="Confirm password" id="confirmPasswordTextField"/>       

@@ -1,7 +1,7 @@
 ﻿.action-label {
 	margin-left: 5;
 	font-family: Harlow Solid Italic Italic;
-	color: #FA5F01;
+	color: #0055FF;
 	font-size: 28;
     vertical-align: center;
 }
@@ -10,4 +10,29 @@
 	width: 50;
 	height: 50;
     vertical-align: center;
+}
+
+.logo {
+	width: 130;
+	height: 130;
+    margin-top: 10;
+    margin-left: 0;
+    margin-right: 0;
+}
+
+Button {
+	background-color: #0055FF;
+	color: #FFFFFF;
+    margin: 10;
+    padding: 10;
+}
+
+TextField {
+    margin-left: 10;
+    margin-right: 10;
+    margin-top: 3;
+    margin-bottom: 3;
+    padding: 10;
+    color: #0088FF;
+    font-size: 17;
 }

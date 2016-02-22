@@ -9,17 +9,7 @@
         </ActionBar>
     </Page.actionBar>
         <StackLayout orientation="vertical">
-            <!--<Label text="Register"/>
-            <Image id="myImg"/>
-            <TextView hint="Username" id="usernameTextView"></TextView>
-            <TextView hint="Email" id="emailTextView"></TextView>
-            <TextView secure="true" hint="Password" id="passwordTextView"/>
-            <TextView secure="true" hint="Confirm password" id="confirmTextView"/>
-            <TextView hint="Full Name" id="fullNameTextView" />
-            <Button text="Take photo" tap="{{takeAvatarTapped}}"/>
-            <Button text="Submit" tap="{{tapRegister}}"/>
-            <Label text="...or just Login"/> -->
-            <Image src="res://icon" class="logo" />
+            <Image src="~/images/logo.png" class="logo" />
             <TextField hint="Username" text=" {{ username }}"  id="usernameTextField"/>
             <TextField hint="Password" text="{{ password }}" secure="true"  id="passwordTextField"/>
             <Button text="Login" tap="tapLogin" class="loginButton"/>

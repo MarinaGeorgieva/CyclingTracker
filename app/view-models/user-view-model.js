@@ -45,7 +45,7 @@ function User(info) {
 				topmost.navigate("views/login/login-page");
 			},
 			function(error) {
-				alert(JSON.stringify(error));
+				alert(JSON.stringify(error.message));
 			});
 	};
 

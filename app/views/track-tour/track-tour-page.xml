@@ -25,29 +25,29 @@
    		<drawer:RadSideDrawer.mainContent>
 	      <ScrollView>
           <GridLayout rows="auto, auto, auto, auto, auto, auto, auto, auto">
-  				<Button row="0" text="start monitoring" tap="buttonStartTap"/>
-  				<Button row="1" text="stop monitoring" tap="buttonStopTap"/>
-  				<Label row="2" text="{{ 'Distance: ' + distance + ' meters' }}"/>
-      		<Label row="3" text="{{ 'Speed: ' + speed + ' m/s' }}"/>
-      		<Label row="4" text="{{ time }}" />
-      		<ListView row="5" items="{{ locations }}">
-  					<ListView.itemTemplate>
-  						<Label text="{{ $value, 'Current location: ' + latitude + ', ' + longitude }}" />
-  					</ListView.itemTemplate>
-  				</ListView>
-          <Image id="myImg" row="6"/>
-          <StackLayout row="7" orientation="horizontal">
-            <Button text="Save" tap="saveTrack" id="btnSave"/>
-            <Button text="Save and share" tap="shareTrack" id="btnShare"/>
-          </StackLayout>
-   			</GridLayout>
-      </ScrollView>
+  				  <Button row="0" text="start monitoring" tap="buttonStartTap"/>
+  				  <Button row="1" text="stop monitoring" tap="buttonStopTap"/>
+  				  <Label row="2" text="{{ 'Distance: ' + distance + ' meters' }}"/>
+      		  <Label row="3" text="{{ 'Speed: ' + speed + ' m/s' }}"/>
+      		  <Label row="4" text="{{ time }}" />
+      		  <ListView row="5" items="{{ locations }}">
+  				  	<ListView.itemTemplate>
+  				  		<Label text="{{ $value, 'Current location: ' + latitude + ', ' + longitude }}" />
+  				  	</ListView.itemTemplate>
+  				  </ListView>
+            <Image id="myImg" row="6"/>
+            <StackLayout row="7" orientation="horizontal">
+              <Button text="Save" tap="saveTrack" id="btnSave"/>
+              <Button text="Save and Share" tap="shareTrack" id="btnShare"/>
+            </StackLayout>
+   			  </GridLayout>
+        </ScrollView>
     	</drawer:RadSideDrawer.mainContent>
     	<drawer:RadSideDrawer.drawerContent>
-      		<StackLayout>
-    			<Button text="Track" tap="tapTrack" />
-    			<Button text="Profile" tap="tapProfile" />
-    			<Button text="Shared tracks" tap="tapShared" />
+      	<StackLayout>
+          <Button text="Track" tap="tapTrack" />
+          <Button text="Profile" tap="tapProfile" />
+          <Button text="Shared tracks" tap="tapShared" />
      		</StackLayout>
     	</drawer:RadSideDrawer.drawerContent>
   </drawer:RadSideDrawer>
