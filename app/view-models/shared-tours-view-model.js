@@ -10,10 +10,12 @@ function SharedToursViewModel(items) {
 		var data = el.data('track');
 		var query = new Everlive.Query();
 
+
+
 		query.where()
 			.eq('isPublic', true)
 			.done()
-			.select('userId', 'distance', 'trackPictureUrl')
+			.select('userId', 'trackPictureUrl')
 			.orderDesc('CreatedAt')
 			.take(10);
 
@@ -24,8 +26,9 @@ function SharedToursViewModel(items) {
 				data.result.forEach(function(tour) {
 					viewModel.push({
 						userId: tour.userId,
-						distance: tour.distance,
+						//distance: tour.distance,
 						trackPictureUrl: tour.trackPictureUrl
+						// userFullName:tour.userFullName
 					});
 				})
 			}, function(error) {

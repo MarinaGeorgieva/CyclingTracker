@@ -18,7 +18,11 @@
     		<Label text="Shared tours" />
         <ListView items="{{ tours }}">
           <ListView.itemTemplate>
-            <Label text="{{ trackPictureUrl }}" />
+            <StackLayout>
+              <Image src="{{ trackPictureUrl }}" height="90"/>
+              <!-- <Label text="{{ userFullName }}" /> -->
+              <!-- <Label text="{{ userId }}" /> -->
+            </StackLayout>
           </ListView.itemTemplate>
         </ListView>
      	</StackLayout>

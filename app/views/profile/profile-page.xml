@@ -16,12 +16,16 @@
     <drawer:RadSideDrawer.mainContent>
     	<ScrollView>
     		<StackLayout>
-          <Image src="~/images/default-avatar.png" class="profile-picture" />
+          <Image  id="profileImage" src="{{ profilePictureUrl }}" class="profile-picture"/>
           <Label text="{{ fullName }}" />
-          <Label text="My tours" />
+          <Label text="My tours" id="myTours"/>
           <ListView items="{{ tours }}" itemTap="tourItemTapped">
             <ListView.itemTemplate>
-              <Label text="{{ createdAt }}" />
+              <StackLayout>
+                <Image src="{{ trackPictureUrl }}" height="90"/>
+                <!-- <Label text="{{ distance }}" /> -->
+                <!-- <Label text="{{ createdAt }}" /> -->
+              </StackLayout>
             </ListView.itemTemplate>
           </ListView>
         </StackLayout>
