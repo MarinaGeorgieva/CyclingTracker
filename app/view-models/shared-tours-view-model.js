@@ -17,7 +17,7 @@ function SharedToursViewModel(items) {
 			.done()
 			.select('userId', 'trackPictureUrl')
 			.orderDesc('CreatedAt')
-			.take(10);
+			.take(7);
 
 		data.get(query)
 			.then(function(data) {

@@ -14,22 +14,20 @@
         <drawer:PushTransition />
     </drawer:rad-side-drawer.drawerTransition>
     <drawer:RadSideDrawer.mainContent>
-    	<ScrollView>
-    		<StackLayout>
-          <Image  id="profileImage" src="{{ profilePictureUrl }}" class="profile-picture"/>
-          <Label text="{{ fullName }}" />
-          <Label text="My tours" id="myTours"/>
-          <ListView items="{{ tours }}" itemTap="tourItemTapped">
-            <ListView.itemTemplate>
-              <StackLayout>
-                <Image src="{{ trackPictureUrl }}" height="90"/>
-                <!-- <Label text="{{ distance }}" /> -->
-                <!-- <Label text="{{ createdAt }}" /> -->
-              </StackLayout>
-            </ListView.itemTemplate>
-          </ListView>
-        </StackLayout>
-    	</ScrollView>
+  		<StackLayout>
+        <Image  id="profileImage" src="{{ profilePictureUrl }}" class="profile-picture"/>
+        <Label text="{{ fullName }}" />
+        <Label text="My tours" id="myTours"/>
+        <ListView items="{{ tours }}" itemTap="tourItemTapped">
+          <ListView.itemTemplate>
+            <StackLayout>
+              <Image src="{{ trackPictureUrl }}" height="90"/>
+              <!-- <Label text="{{ distance }}" /> -->
+              <!-- <Label text="{{ createdAt }}" /> -->
+            </StackLayout>
+          </ListView.itemTemplate>
+        </ListView>
+      </StackLayout>
     </drawer:RadSideDrawer.mainContent>
     <drawer:RadSideDrawer.drawerContent>
       <StackLayout>

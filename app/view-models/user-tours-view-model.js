@@ -19,7 +19,7 @@ function UserToursViewModel(items) {
 			.done()
 			.select('trackPictureUrl', 'distance', 'CreatedAt')
 			.order('CreatedAt')
-			.take(10);
+			.take(7);
 
 		data.get(query)
 			.then(function(data) {
