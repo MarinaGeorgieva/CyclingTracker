@@ -25,8 +25,8 @@
    		<drawer:RadSideDrawer.mainContent>
 	      <ScrollView>
           <GridLayout rows="auto, auto, auto, auto, auto, auto, auto, auto">
-  				  <Button row="0" text="start monitoring" tap="buttonStartTap"/>
-  				  <Button row="1" text="stop monitoring" tap="buttonStopTap"/>
+  				  <Button row="0" text="start monitoring" tap="buttonStartTap" id="btnStart"/>
+  				  <Button row="1" text="stop monitoring" tap="buttonStopTap" id="btnStop"/>
   				  <Label row="2" text="{{ 'Distance: ' + distance + ' meters' }}"/>
       		  <Label row="3" text="{{ 'Speed: ' + speed + ' m/s' }}"/>
       		  <Label row="4" text="{{ time }}" />

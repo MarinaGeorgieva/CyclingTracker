@@ -12,6 +12,9 @@ var el = new Everlive('nh2gqgfwwjk2l3nj');
 var btnSave = '';
 var btnShare = '';
 
+var btnStart = '';
+var btnStop = '';
+
 var activityIndicator = '';
 
 var trackObj = {};
@@ -182,6 +185,29 @@ function stopTimer() {
 var watchId;
 
 function buttonStartTap(agrs) {
+
+	appSettings.setBoolean(global.isTracking, true);
+
+	btnStop.scaleX = 0;
+	btnStop.scaleY = 0;
+
+	btnStart.animate({
+                scale: { x: 0, y: 0 },
+                duration: 300
+            })
+            .then(function () {
+                return btnStart.visibility = "collapsed";
+            })
+            .then(function () {
+                return btnStop.visibility = "visible";
+            })
+            .then(function () {
+                return btnStop.animate({
+                scale: { x: 1, y: 1 },
+                duration: 300
+            })
+        });
+
 	startTimer();
 
 	getCurrentLocation();
@@ -206,6 +232,37 @@ function buttonStartTap(agrs) {
 }
 
 function buttonStopTap(agrs) {
+	
+	appSettings.setBoolean(global.isTracking, false);
+	
+	btnStart.scaleX = 0;
+	btnStart.scaleY = 0;
+
+	btnStop.animate({
+                scale: { x: 0, y: 0 },
+                duration: 300
+            })
+            .then(function () {
+                return btnStop.visibility = "collapsed";
+            })
+            .then(function () {
+                return btnStart.visibility = "visible";
+            })
+            .then(function () {
+                return btnStart.animate({
+                scale: { x: 1, y: 1 },
+                duration: 300
+            })
+        });
+
+
+
+
+
+
+
+
+
 	stopTimer();
 
 	console.log("button stop tap");
@@ -228,11 +285,24 @@ function pageLoaded(args) {
 
 	myImage = page.getViewById("myImg");
 
+	btnStart = page.getViewById("btnStart");
+	btnStop = page.getViewById("btnStop");
+
 	btnSave = page.getViewById("btnSave");
 	btnShare = page.getViewById("btnShare");
 
 	btnSave.visibility = "collapsed";
 	btnShare.visibility = "collapsed";
+
+	// btnStart.visibility = "visible";
+	// btnStop.visibility = "collapsed";
+	if (appSettings.getBoolean(global.isTracking)) {
+		btnStart.visibility = "collapsed";
+		btnStop.visibility = "visible";
+	}else {
+		btnStart.visibility = "visible";
+		btnStop.visibility = "collapsed";		
+	}
 
 	topmost = frameModule.topmost();
 }
@@ -303,6 +373,8 @@ exports.tapShared = tapShared;
 
 exports.buttonStartTap = buttonStartTap;
 exports.buttonStopTap = buttonStopTap;
+
 exports.onLoaded = pageLoaded;
+
 exports.saveTrack = saveTrack;
 exports.shareTrack = shareTrack;
