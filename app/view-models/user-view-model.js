@@ -36,6 +36,7 @@ function User(info) {
 		var attrs = {
 			Email: viewModel.get("email"),
 			DisplayName: viewModel.get("displayName"),
+			profilePictureUrl: ''
 		};
 
 		if (viewModel.get("password") !== viewModel.get("confirmPassword")) {

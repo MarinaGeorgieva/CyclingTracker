@@ -14,9 +14,9 @@ var userId = '';
 var tours = new UserToursViewModel([]);
 var model = new Observable({
 	tours: tours,
-	username: '',
-	fullName: '',
-	profilePictureUrl: '~/images/default-avatar.png'
+	username: "",
+	fullName: "",
+	profilePictureUrl: ""
 });
 
 var userPic = '';
@@ -24,25 +24,32 @@ var userPic = '';
 function pageLoaded(args) {
 	var page = args.object;
 	userPic = page.getViewById('profileImage');
-	
+
 	page.bindingContext = model;
 
-	userPic.on('longPress', function(args){
+	userPic.on('longPress', function(args) {
 		updateProfilePhoto();
 	});
 
 	topmost = frameModule.topmost();
 
 	userId = appSettings.getString('userId');
-	console.log('+++++++++++++' + userId + '+++++++++++++');
 
 	el.Users.getById(userId)
 		.then(function(data) {
 				model.username = data.result.Username;
 				model.fullName = data.result.DisplayName;
-				if (profilePictureUrl) {
+
+				console.log("****" + data.result.profilePictureUrl + "***");
+
+				if (data.result.profilePictureUrl == "" || data.result.profilePictureUrl == " ") {
+					model.profilePictureUrl = "~/images/default-avatar.png";
+				} else {
 					model.profilePictureUrl = data.result.profilePictureUrl;
 				}
+
+				console.log("Picture url: " + model.profilePictureUrl + "**");
+
 				// console.log(model.username);
 				// console.log(model.fullName);
 				//alert(JSON.stringify(data));
@@ -69,7 +76,7 @@ function tapShared() {
 
 function updateProfilePhoto() {
 	camera.takePicture(false).then(function(picture) {
-		
+
 		userPic.imageSource = picture;
 
 		var convertedImage = userPic.imageSource.toBase64String('.jpg', 100);
@@ -82,16 +89,18 @@ function updateProfilePhoto() {
 		el.Files.create(file, function(response) {
 			console.log("Successfully uploaded the image file at: " + response.result.Uri);
 
-			el.Users.updateSingle({ 'Id': userId, 'profilePictureUrl': response.result.Uri },
-		    function(data){
-		        //alert(JSON.stringify(data));
-				Toast.makeText("Successfully updated profile picture!").show();
-		    },
-		    function(error){
-		        alert(JSON.stringify(error));
-				// Toast.makeText("Unable to updated profile picture!").show();
-				// Toast.makeText("Check connection!").show();
-		    });
+			el.Users.updateSingle({
+					'Id': userId,
+					'profilePictureUrl': response.result.Uri
+				},
+				function(data) {
+					Toast.makeText("Successfully updated profile picture!").show();
+				},
+				function(error) {
+					alert(JSON.stringify(error.message));
+					// Toast.makeText("Unable to updated profile picture!").show();
+					// Toast.makeText("Check connection!").show();
+				});
 
 
 		}, function(err) {

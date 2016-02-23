@@ -16,7 +16,7 @@
     <drawer:RadSideDrawer.mainContent>
   		<StackLayout>
         <StackLayout class="user-info">
-          <Image id="profileImage" src="{{ profilePictureUrl }}" class="profile-picture"/>
+          <Image id="profileImage" src="{{ profilePictureUrl }}" stretch="fill" class="profile-picture"/>
           <Label text="{{ fullName }}" class="fullname-label" />
         </StackLayout>        
         <Label text="Tours" id="myTours" class="tours-label"/>
