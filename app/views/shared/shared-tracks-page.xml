@@ -23,7 +23,7 @@
                   <Label row="0" col="1" text="{{ distance + ' meters' }}" textWrap="true" class="distance-label" />
                   <Label row="1" text="{{ userFullName }}" textWrap="true" class="fullname-label"/> 
               </GridLayout>
-              <Image src="{{ trackPictureUrl }}" stretch="fill" class="tour-image"/>
+              <Image src="{{ trackPictureUrl }}" stretch="fill" class="tour-image" id="img"/>
             </StackLayout>
           </ListView.itemTemplate>
         </ListView>

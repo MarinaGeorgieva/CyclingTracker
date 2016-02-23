@@ -1,3 +1,4 @@
+var vmModule = require("../track-tour/track-tour-view-model");
 var geolocation = require("nativescript-geolocation");
 var frameModule = require("ui/frame");
 var observable = require("data/observable");
@@ -21,6 +22,7 @@ var nameTextField;
 var trackObj = {};
 
 var myImage = '';
+/*
 var ViewModel = (function(_super) {
 	__extends(ViewModel, _super);
 
@@ -110,9 +112,46 @@ var ViewModel = (function(_super) {
 })(observable.Observable);
 
 exports.ViewModel = ViewModel;
-
+*/
 var page;
-var model = new ViewModel();
+var model = new vmModule.ViewModel();
+
+function pageLoaded(args) {
+	page = args.object;
+	page.bindingContext = model;
+
+	model.set("distance", 0);
+	model.set("speed", 0);
+	model.set("name", "");
+	model.set("time", "00:00:00");
+	while (model.get("locations").length) {
+		model.get("locations").pop();
+	}
+
+	myImage = page.getViewById("myImg");
+	myImage.visibility = "collapsed";
+
+	btnStart = page.getViewById("btnStart");
+	btnStop = page.getViewById("btnStop");
+
+	nameTextField = page.getViewById("nameTextField");
+
+	btnSave = page.getViewById("btnSave");
+	btnShare = page.getViewById("btnShare");
+	btnSave.visibility = "collapsed";
+	btnShare.visibility = "collapsed";
+	nameTextField.visibility = "collapsed";
+
+	if (appSettings.getBoolean(global.isTracking)) {
+		btnStart.visibility = "collapsed";
+		btnStop.visibility = "visible";
+	} else {
+		btnStart.visibility = "visible";
+		btnStop.visibility = "collapsed";
+	}
+
+	topmost = frameModule.topmost();
+}
 
 function enableLocation() {
 	if (!geolocation.isEnabled()) {
@@ -311,34 +350,6 @@ function getUserFullName(userId) {
 			});
 }
 
-function pageLoaded(args) {
-	page = args.object;
-	page.bindingContext = model;
-
-	myImage = page.getViewById("myImg");
-
-	btnStart = page.getViewById("btnStart");
-	btnStop = page.getViewById("btnStop");
-
-	nameTextField = page.getViewById("nameTextField");
-
-	btnSave = page.getViewById("btnSave");
-	btnShare = page.getViewById("btnShare");
-	btnSave.visibility = "collapsed";
-	btnShare.visibility = "collapsed";
-	nameTextField.visibility = "collapsed";
-
-	if (appSettings.getBoolean(global.isTracking)) {
-		btnStart.visibility = "collapsed";
-		btnStop.visibility = "visible";
-	} else {
-		btnStart.visibility = "visible";
-		btnStop.visibility = "collapsed";
-	}
-
-	topmost = frameModule.topmost();
-}
-
 function saveTrack() {
 	console.log("---------save---------");
 	trackObj.name = nameTextField.text;
@@ -372,6 +383,8 @@ function takePicture() {
 			trackObj.trackPictureUrl = response.result.Uri;
 			trackObj.Id = response.result.Id;
 
+
+			myImage.visibility = "visible";
 			nameTextField.visibility = "visible";
 			btnSave.visibility = "visible";
 			btnSave.scaleX = 0;
