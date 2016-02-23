@@ -30,10 +30,7 @@ function onLoaded(args) {
 }
 
 function tapRegister() {
-	console.log("----------------Register----------------")
-
-	//TODO: Validate fields !!!!!
-
+	console.log("----------------Register----------------");
 	user.register();
 }
 

@@ -19,13 +19,11 @@ function UserToursViewModel(items) {
 			.eq('userId', userId)
 			.done()
 			.select('trackPictureUrl', 'distance', 'name', 'CreatedAt')
-			.order('CreatedAt')
-			.take(7);
+			.order('CreatedAt');
 
 		data.get(query)
 			.then(function(data) {
-				console.log("-------------------success---------------");
-				console.log(JSON.stringify(data.result));
+				viewModel.empty();
 				data.result.forEach(function(tour) {
 					viewModel.push({
 						createdAt: moment(tour.CreatedAt).format('D/M/YY'),
@@ -37,6 +35,12 @@ function UserToursViewModel(items) {
 			}, function(error) {
 				alert(JSON.stringify(error.message));
 			});
+	};
+
+	viewModel.empty = function() {
+		while (viewModel.length) {
+			viewModel.pop();
+		}
 	};
 
 	return viewModel;

@@ -31,19 +31,7 @@ function pageLoaded(args) {
 }
 
 function tapLogin() {
-	console.log("----------------Login----------------")
-
-	/*
-	if (!username) {
-		Toast.makeText("Provide username to login!").show();
-	};
-	if (!password) {
-		Toast.makeText("Provide password to login!").show();
-	};
-	*/
-
-	//TODO: Validate username and password !!!!!
-
+	console.log("----------------Login----------------");
 	user.login();
 }
 

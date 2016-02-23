@@ -14,13 +14,11 @@ function SharedToursViewModel(items) {
 			.eq('isPublic', true)
 			.done()
 			.select('userId', 'trackPictureUrl', 'distance', 'name', 'trackPictureUrl', 'userFullName')
-			.orderDesc('CreatedAt')
-			.take(5);
+			.orderDesc('CreatedAt');
 
 		data.get(query)
 			.then(function(data) {
-				console.log("-------------------success---------------");
-				console.log(JSON.stringify(data.result));
+				viewModel.empty();
 				data.result.forEach(function(tour) {
 					viewModel.push({
 						userId: tour.userId,
@@ -33,6 +31,12 @@ function SharedToursViewModel(items) {
 			}, function(error) {
 				console.log(JSON.stringify(error.message));
 			});
+	};
+
+	viewModel.empty = function() {
+		while (viewModel.length) {
+			viewModel.pop();
+		}
 	};
 
 	return viewModel;

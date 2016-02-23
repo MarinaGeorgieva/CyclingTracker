@@ -41,6 +41,7 @@ function User(info) {
 
 		if (viewModel.get("password") !== viewModel.get("confirmPassword")) {
 			alert("Password and confirm password don't match!");
+			return;
 		}
 
 		el.Users.register(viewModel.get("username"),
