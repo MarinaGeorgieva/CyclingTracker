@@ -35,7 +35,7 @@
 				  	</ListView.itemTemplate>
 				  </ListView>
           <GridLayout rows="auto" columns="auto, auto">
-              <Image row="0" col="0" id="myImg" class="tour-image" />
+              <Image row="0" col="0" id="myImg" class="tour-image" stretch="fill" />
               <TextField row="0" col="1" text="{{ name }}" hint="Tour name" id="nameTextField" class="tour-name-field" />
           </GridLayout>
           <GridLayout columns="*, *">
