@@ -50,7 +50,16 @@ function User(info) {
 			function(data) {
 				Toast.makeText("Successfully registered!").show();
 				var topmost = frameModule.topmost();
-				topmost.navigate("views/login/login-page");
+				var navigationEntry = {
+					moduleName: "views/login/login-page",
+					animated: true,
+					transition: {
+						name: "slide",
+						duration: 380,
+						curve: "easeIn"
+					}
+				};
+				topmost.navigate(navigationEntry);
 			},
 			function(error) {
 				alert(JSON.stringify(error.message));

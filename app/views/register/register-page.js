@@ -1,4 +1,3 @@
-var frameModule = require("ui/frame");
 var Everlive = require('./../../libs/everlive/everlive.all.min');
 var el = new Everlive('nh2gqgfwwjk2l3nj');
 var UserViewModel = require("./../../view-models/user-view-model");

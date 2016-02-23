@@ -36,7 +36,16 @@ function tapLogin() {
 }
 
 function goToRegister() {
-	topmost.navigate("views/register/register-page");
+	var navigationEntry = {
+		moduleName: "views/register/register-page",
+		animated: true,
+		transition: {
+			name: "flip",
+			duration: 600,
+			curve: "easeIn"
+		}
+	};
+	topmost.navigate(navigationEntry);
 }
 
 exports.tapLogin = tapLogin;

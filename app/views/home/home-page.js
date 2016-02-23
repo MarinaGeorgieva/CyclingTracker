@@ -9,15 +9,42 @@ function pageLoaded(args) {
 }
 
 function tapTrack() {
-	topmost.navigate("views/track-tour/track-tour-page");
+	var navigationEntry = {
+		moduleName: "views/track-tour/track-tour-page",
+		animated: true,
+		transition: {
+			name: "slide",
+			duration: 380,
+			curve: "easeIn"
+		}
+	};
+	topmost.navigate(navigationEntry);
 }
 
 function tapProfile() {
-	topmost.navigate("views/profile/profile-page");
+	var navigationEntry = {
+		moduleName: "views/profile/profile-page",
+		animated: true,
+		transition: {
+			name: "slide",
+			duration: 380,
+			curve: "easeIn"
+		}
+	};
+	topmost.navigate(navigationEntry);
 }
 
 function tapShared() {
-	topmost.navigate("views/shared/shared-tracks-page");
+	var navigationEntry = {
+		moduleName: "views/shared/shared-tracks-page",
+		animated: true,
+		transition: {
+			name: "slideTop",
+			duration: 380,
+			curve: "easeIn"
+		}
+	};
+	topmost.navigate(navigationEntry);
 }
 
 exports.tapShared = tapShared;

@@ -40,19 +40,11 @@ function pageLoaded(args) {
 				model.username = data.result.Username;
 				model.fullName = data.result.DisplayName;
 
-				console.log("****" + data.result.profilePictureUrl + "***");
-
 				if (data.result.profilePictureUrl == "" || data.result.profilePictureUrl == " ") {
 					model.profilePictureUrl = "~/images/default-avatar.png";
 				} else {
 					model.profilePictureUrl = data.result.profilePictureUrl;
 				}
-
-				console.log("Picture url: " + model.profilePictureUrl + "**");
-
-				// console.log(model.username);
-				// console.log(model.fullName);
-				//alert(JSON.stringify(data));
 			},
 			function(error) {
 				alert(JSON.stringify(error.message));
@@ -72,7 +64,6 @@ function tapProfile() {
 function tapShared() {
 	topmost.navigate("views/shared/shared-tracks-page");
 }
-
 
 function updateProfilePhoto() {
 	camera.takePicture(false).then(function(picture) {
