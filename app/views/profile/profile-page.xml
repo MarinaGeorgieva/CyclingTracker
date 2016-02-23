@@ -37,10 +37,10 @@
       </StackLayout>
     </drawer:RadSideDrawer.mainContent>
     <drawer:RadSideDrawer.drawerContent>
-      <StackLayout>
-    		<Button text="Track" tap="tapTrack" />
-    		<Button text="Profile" tap="tapProfile" />
-    		<Button text="Shared tracks" tap="tapShared" />
+      <StackLayout class="drawer-content">
+    		<Button text="Track" tap="tapTrack" class="drawer-item "/>
+    		<Button text="Profile" tap="tapProfile" class="drawer-item active" />
+    		<Button text="Shared tracks" tap="tapShared" class="drawer-item"/>
      	</StackLayout>
     </drawer:RadSideDrawer.drawerContent>
   </drawer:RadSideDrawer>

@@ -21,6 +21,21 @@
     margin-right: 0;
 }
 
+.drawer-content {
+	background-color: #C1D5F5;
+}
+
+.drawer-item {
+	border-width: 1;
+	background-color: transparent;
+	text-align: left;
+	margin: 0;
+}
+
+.active {
+	text-decoration: underline;
+}
+
 Button {
 	background-color: #0055FF;
 	color: #FFFFFF;
