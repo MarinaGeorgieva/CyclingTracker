@@ -26,7 +26,7 @@ function pageLoaded(args) {
 	// If user is already logged in
 	var currentUserId = appSettings.getString("userId");
 	if (currentUserId) {
-		topmost.navigate("views/home/home-page");
+		topmost.navigate("views/profile/profile-page");
 	}
 }
 

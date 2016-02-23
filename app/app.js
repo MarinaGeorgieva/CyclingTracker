@@ -7,4 +7,5 @@ global.isTracking = "isTracking";
 application.mainModule = "views/login/login-page";
 application.cssFile = "./styles/app.css";
 
+
 application.start();

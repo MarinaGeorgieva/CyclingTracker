@@ -25,7 +25,7 @@ function User(info) {
 
 				Toast.makeText("Successfully logged in!").show();
 				var topmost = frameModule.topmost();
-				topmost.navigate("views/home/home-page");
+				topmost.navigate("views/profile/profile-page");
 			},
 			function(error) {
 				alert(JSON.stringify(error.message));
