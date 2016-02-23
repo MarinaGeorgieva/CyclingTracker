@@ -3,6 +3,7 @@ var Everlive = require('../libs/everlive/everlive.all.min');
 var el = new Everlive('nh2gqgfwwjk2l3nj');
 var ObservableArray = require("data/observable-array").ObservableArray;
 var appSettings = require('application-settings');
+var moment = require('moment');
 
 function UserToursViewModel(items) {
 	var viewModel = new ObservableArray(items);
@@ -17,7 +18,7 @@ function UserToursViewModel(items) {
 		query.where()
 			.eq('userId', userId)
 			.done()
-			.select('trackPictureUrl', 'distance', 'CreatedAt')
+			.select('trackPictureUrl', 'distance', 'name', 'CreatedAt')
 			.order('CreatedAt')
 			.take(7);
 
@@ -27,9 +28,10 @@ function UserToursViewModel(items) {
 				console.log(JSON.stringify(data.result));
 				data.result.forEach(function(tour) {
 					viewModel.push({
-						createdAt: tour.CreatedAt,
+						createdAt: moment(tour.CreatedAt).format('D/M/YY'),
 						distance: tour.distance,
-						trackPictureUrl: tour.trackPictureUrl
+						trackPictureUrl: tour.trackPictureUrl,
+						name: tour.name
 					});
 				})
 			}, function(error) {

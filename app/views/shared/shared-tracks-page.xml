@@ -15,13 +15,15 @@
     </drawer:rad-side-drawer.drawerTransition>
     <drawer:RadSideDrawer.mainContent>
     	<StackLayout>
-    		<Label text="Shared tours" />
         <ListView items="{{ tours }}">
           <ListView.itemTemplate>
             <StackLayout>
-              <Image src="{{ trackPictureUrl }}" height="90"/>
-              <!-- <Label text="{{ userFullName }}" /> -->
-              <!-- <Label text="{{ userId }}" /> -->
+              <GridLayout rows="auto, auto" columns="2*, 1*" class="grid">
+                  <Label row="0" col="0" text="{{ name }}" textWrap="true" class="name-label" />
+                  <Label row="0" col="1" text="{{ distance + ' meters' }}" textWrap="true" class="distance-label" />
+                  <Label row="1" text="{{ userFullName }}" textWrap="true" class="fullname-label"/> 
+              </GridLayout>
+              <Image src="{{ trackPictureUrl }}" stretch="fill" class="tour-image"/>
             </StackLayout>
           </ListView.itemTemplate>
         </ListView>

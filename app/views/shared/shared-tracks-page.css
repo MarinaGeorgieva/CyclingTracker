@@ -1,0 +1,38 @@
+.grid {
+	border-width: 1;
+	border-color: blue;
+	margin-top: 10;
+	width: 365;
+	background-color: #C1D5F5;
+}
+
+.name-label {
+	margin-left: 10;
+	font-size: 20;
+}
+
+.distance-label {
+	margin-right: 10;
+	text-align: right;
+	font-size: 15;
+	vertical-align: center;
+}
+
+.fullname-label {
+	font-size: 14;
+	font-style: italic;
+	margin-left: 10;
+	margin-bottom: 5;
+}
+
+.tour-image {
+	border-width: 1;
+	border-color: blue;
+	width: 365;
+	height: 200;
+	margin-bottom: 10;
+}
+
+Label {
+	color: #454A52;
+}

@@ -1,5 +1,6 @@
 ﻿.action-label {
 	margin-left: 5;
+	padding-left: 5;
 	font-family: Harlow Solid Italic Italic;
 	color: #0055FF;
 	font-size: 28;
@@ -18,11 +19,6 @@
     margin-top: 10;
     margin-left: 0;
     margin-right: 0;
-}
-
-.profile-picture {
-	width: 50;
-	height: 50;
 }
 
 Button {

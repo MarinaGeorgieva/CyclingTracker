@@ -15,16 +15,23 @@
     </drawer:rad-side-drawer.drawerTransition>
     <drawer:RadSideDrawer.mainContent>
   		<StackLayout>
-        <Image  id="profileImage" src="{{ profilePictureUrl }}" class="profile-picture"/>
-        <Label text="{{ fullName }}" />
-        <Label text="My tours" id="myTours"/>
+        <StackLayout class="user-info">
+          <Image id="profileImage" src="{{ profilePictureUrl }}" class="profile-picture"/>
+          <Label text="{{ fullName }}" class="fullname-label" />
+        </StackLayout>        
+        <Label text="Tours" id="myTours" class="tours-label"/>
         <ListView items="{{ tours }}" itemTap="tourItemTapped">
           <ListView.itemTemplate>
             <StackLayout>
-              <Image src="{{ trackPictureUrl }}" height="90"/>
-              <!-- <Label text="{{ distance }}" /> -->
-              <!-- <Label text="{{ createdAt }}" /> -->
-            </StackLayout>
+              <GridLayout rows="auto" columns="1*, 2*" class="grid">
+                <Image row="0" col="0" src="{{ trackPictureUrl }}" class="tour-image"/>
+                <GridLayout row="0" col="1" rows="auto, auto, auto" columns="*">
+                    <Label row="0" col="0" text="{{ name }}" class="name-label" />
+                    <Label row="1" col="0" text="{{ distance + ' meters' }}" class="distance-label"/> 
+                    <Label row="2" col="0" text="{{ createdAt }}" class="date-label"/>
+                </GridLayout>              
+              </GridLayout>    
+            </StackLayout>                     
           </ListView.itemTemplate>
         </ListView>
       </StackLayout>
